@@ -1,0 +1,566 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Start_Record_Screen" this:Start_Record_Screen.SaveVideoFolder="c:\temp" this:Start_Record_Screen.ffmpegPath="c:\temp\ffmpeg\ffmpeg.exe" this:Start_Record_Screen.ShowClock="True" this:Start_Record_Screen.VideoFilenamePrefix="vid" this:Start_Record_Screen.Verbose="False"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Diagnostics;assembly=System"
+ xmlns:this="clr-namespace:"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="The maximum length of a record, in seconds.&#xA;&#xA;If argument is 0 or empty, the recorder will assume the default value of 60 seconds.&#xA;&#xA;Use -1 for unlimited time (remember to place the Stop Record Screen activity to stop the recorder)." Name="RecordLength" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="The folder used to save the video file." Name="SaveVideoFolder" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="The full path of &quot;ffmpeg.exe&quot; file.&#xA;&#xA;Download ffmpeg from:&#xA;https://ffmpeg.zeranoe.com/builds/" Name="ffmpegPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Set True to place a digital clock over the video." Name="ShowClock" Type="InArgument(x:Boolean)" />
+    <x:Property sap2010:Annotation.AnnotationText="Filename prefix for the video.&#xA;&#xA;The video will be saved with the following format:&#xA;[VideoFilenamePrefix]_[yyyyMMddHH24mmss].avi" Name="VideoFilenamePrefix" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Activate ffmpeg console messages." Name="Verbose" Type="InArgument(x:Boolean)" />
+    <x:Property sap2010:Annotation.AnnotationText="Define the frame rate of the video. Accepted values are between 1 and 60. Dafault value: 10 fps.&#xA;&#xA;Note: higher taxes will demand more system performance and storage." Name="FrameRate" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:Annotation.AnnotationText>UPTF000000A8eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiUmVjb3JkIHNjcmVlbiB0byBhIGZpbGUuIiwiPFZlcnNpb24+a19fQmFja2luZ0ZpZWxkIjoxfQ==</sap2010:Annotation.AnnotationText>
+  <sap2010:WorkflowViewState.IdRef>Start_Record_Screen_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Record screen to a file.&#xA;&#xA;Last revision: &#xA;20191218.Marcel Stein&#xA;- Added FrameRate argument;&#xA;- Revision of argument descriptions;&#xA;- Fixed the ffmpeg error: 'Fontconfig error: Cannot load default config file'.&#xA;&#xA;20191206.Marcel Stein&#xA;- First release" DisplayName="StartRecordScreen" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Flowchart DisplayName="Main Flow" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+      <Flowchart.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="FfmpegFileExists" />
+      </Flowchart.Variables>
+      <Flowchart.StartNode>
+        <FlowDecision x:Name="__ReferenceID0" Condition="[SaveVideoFolder IsNot Nothing]" DisplayName="Video folder not Nothing?" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+          <FlowDecision.True>
+            <FlowStep x:Name="__ReferenceID3">
+              <ui:PathExists DisplayName="ffmpeg Path Exists" Exists="[FfmpegFileExists]" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[ffmpegPath]" PathType="File" />
+              <FlowStep.Next>
+                <FlowDecision x:Name="__ReferenceID4" Condition="[FfmpegFileExists]" DisplayName="ffmpeg Exists?" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                  <FlowDecision.True>
+                    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                      <Sequence sap2010:Annotation.AnnotationText="Start screen recorder process." DisplayName="Start Screen Recorder" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="ArgVideoFile" />
+                          <Variable x:TypeArguments="x:String" Name="ArgRecordLength" />
+                          <Variable x:TypeArguments="x:String" Name="VideoArgs" />
+                          <Variable x:TypeArguments="x:String" Name="ArgShowClock" />
+                          <Variable x:TypeArguments="x:String" Name="ArgLogLevel" />
+                          <Variable x:TypeArguments="x:String" Name="ArgFrameRate" />
+                        </Sequence.Variables>
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Ensure that all instances are closed" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\Stop Screen Recorder.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                        <Parallel DisplayName="Manage the command line arg (part 1/2)" sap2010:WorkflowViewState.IdRef="Parallel_1">
+                          <Sequence DisplayName="Set the Record Length arg" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <If Condition="[RecordLength = 0]" DisplayName="If (RecordLength = 0)" sap2010:WorkflowViewState.IdRef="If_3">
+                              <If.Then>
+                                <Assign DisplayName="Assign RecordLength default value" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[RecordLength]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">60</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                            <If Condition="[RecordLength &gt; 0]" DisplayName="If (RecordLength &gt; 0)" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If.Then>
+                                <Assign DisplayName="Assign timeInSeconds" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[ArgRecordLength]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[" -t "+RecordLength.ToString + " "]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                              <If.Else>
+                                <Assign DisplayName="Let timeInSeconds empty" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[ArgRecordLength]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" Value="" />
+                                    </InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                          <Sequence DisplayName="Set the frame rate arg" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <If Condition="[FrameRate &lt;= 0 Or FrameRate &gt; 60]" DisplayName="If (FrameRate &lt;= 0 Or FrameRate &gt; 60)" sap2010:WorkflowViewState.IdRef="If_8">
+                              <If.Then>
+                                <Assign DisplayName="Assign FrameRate default value" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[FrameRate]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">10</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Then>
+                            </If>
+                            <Assign DisplayName="Assign ArgFrameRate" sap2010:WorkflowViewState.IdRef="Assign_12">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[ArgFrameRate]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">["-framerate "+FrameRate.ToString]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Sequence>
+                          <If Condition="[ShowClock]" DisplayName="Set the clock arg" sap2010:WorkflowViewState.IdRef="If_2">
+                            <If.Then>
+                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:String" Name="ArgFontPath" />
+                                </Sequence.Variables>
+                                <ui:GetEnvironmentFolder DisplayName="Get Environment Folder" FolderPath="[ArgFontPath]" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_1" SpecialFolder="Fonts" />
+                                <Assign DisplayName="Get font fullpath" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[ArgFontPath]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[ArgFontPath.Replace("\","/").Replace(":","\\:")+"/segoeui.ttf"]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="Assign 'showClockArg'" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[ArgShowClock]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">["-vf drawtext=""fontfile="+ArgFontPath+": fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5: boxborderw=5: x=(w-text_w)/2: y=text_h/2: text='%{gmtime\:%Y-%m-%d %H\\\:%M\\\:%S}': shadowcolor=black: shadowx=2: shadowy=2"" "]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Assign DisplayName="Let 'showClockArg' empty" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[ArgShowClock]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                        </Parallel>
+                        <Parallel DisplayName="Manage the command line arg (part 2/2)" sap2010:WorkflowViewState.IdRef="Parallel_2">
+                          <If Condition="[Verbose = False]" DisplayName="Set the Verbose arg" sap2010:WorkflowViewState.IdRef="If_4">
+                            <If.Then>
+                              <Assign DisplayName="Assign logLevel param" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[ArgLogLevel]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">-loglevel quiet</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Then>
+                          </If>
+                          <Assign DisplayName="Set the Video Filename arg" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[ArgVideoFile]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["""" + SaveVideoFolder + "\"+VideoFilenamePrefix+"_"+DateTime.Now.ToString("yyyyMMdd")+DateTime.Now.ToString("HH24mmss")+".avi" + """"]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Parallel>
+                        <Assign DisplayName="Assign videoArgs" sap2010:WorkflowViewState.IdRef="Assign_5">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[VideoArgs]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">["-f gdigrab -draw_mouse 1 " + ArgLogLevel + " -rtbufsize 150M "+ArgFrameRate+" -i desktop "+ArgRecordLength + ArgShowClock + ArgVideoFile]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:LogMessage DisplayName="Recording: Start" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;🎥 Recording screen to video: &quot;+ArgVideoFile]" />
+                        <ui:StartProcess WorkingDirectory="{x:Null}" Arguments="[VideoArgs]" DisplayName="Start FFMPEG" FileName="[ffmpegPath]" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+                        <Sequence DisplayName="Verifiy if started ok" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="sco:Collection(sd:Process)" Name="ProcessList" />
+                            <Variable x:TypeArguments="x:Boolean" Name="FfmpegStarted" />
+                            <Variable x:TypeArguments="ui:Window" Name="FfmpegWindow" />
+                          </Sequence.Variables>
+                          <Delay sap2010:Annotation.AnnotationText="Wait for ffmpeg start" DisplayName="Delay for ffmpeg process start" Duration="00:00:03" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                          <ui:GetProcesses ContinueOnError="{x:Null}" DisplayName="Get Processes List" sap2010:WorkflowViewState.IdRef="GetProcesses_1" Processes="[ProcessList]" />
+                          <ui:ForEach x:TypeArguments="sd:Process" CurrentIndex="{x:Null}" DisplayName="For Each process" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ProcessList]">
+                            <ui:ForEach.Body>
+                              <ActivityAction x:TypeArguments="sd:Process">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="sd:Process" Name="item" />
+                                </ActivityAction.Argument>
+                                <If Condition="[item.ProcessName.Contains(&quot;ffmpeg&quot;)]" DisplayName="If process contains ffmpeg" sap2010:WorkflowViewState.IdRef="If_6">
+                                  <If.Then>
+                                    <Assign DisplayName="Assign ffmpegStarted" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[FfmpegStarted]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </If.Then>
+                                </If>
+                              </ActivityAction>
+                            </ui:ForEach.Body>
+                          </ui:ForEach>
+                          <If Condition="[FfmpegStarted]" DisplayName="If ffmpegStarted" sap2010:WorkflowViewState.IdRef="If_7">
+                            <If.Then>
+                              <ui:WindowScope SearchScope="{x:Null}" Window="{x:Null}" ApplicationWindow="[FfmpegWindow]" DisplayName="Attach Ffmpeg Window" sap2010:WorkflowViewState.IdRef="WindowScope_1" Selector="&lt;wnd app='ffmpeg.exe' /&gt;" TimeoutMS="500">
+                                <ui:WindowScope.Body>
+                                  <ActivityAction x:TypeArguments="x:Object">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                    </ActivityAction.Argument>
+                                    <ui:MinimizeWindow DisplayName="Minimize  Ffmpeg Window" sap2010:WorkflowViewState.IdRef="MinimizeWindow_1" Window="[FfmpegWindow]" />
+                                  </ActivityAction>
+                                </ui:WindowScope.Body>
+                              </ui:WindowScope>
+                            </If.Then>
+                            <If.Else>
+                              <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;🎥 ffmpeg did not start correctly. Command line '&quot;+ffmpegPath + &quot;' is invalid!&quot;]" />
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </Sequence>
+                    </FlowStep>
+                  </FlowDecision.True>
+                  <FlowDecision.False>
+                    <FlowStep x:Name="__ReferenceID5">
+                      <Throw DisplayName="Throw invalid ffmpeg path error" Exception="[New System.Exception(&quot;Invalid path for ffmpeg executable. Please provide the full path of ffmpeg.exe.&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                      <sap2010:WorkflowViewState.IdRef>FlowStep_2</sap2010:WorkflowViewState.IdRef>
+                    </FlowStep>
+                  </FlowDecision.False>
+                </FlowDecision>
+              </FlowStep.Next>
+              <sap2010:WorkflowViewState.IdRef>FlowStep_3</sap2010:WorkflowViewState.IdRef>
+            </FlowStep>
+          </FlowDecision.True>
+          <FlowDecision.False>
+            <FlowStep x:Name="__ReferenceID2">
+              <Throw DisplayName="Throw invalid folder error" Exception="[New System.Exception(&quot;Invalid folder for 'SaveVideoFolder' parameter.&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              <sap2010:WorkflowViewState.IdRef>FlowStep_4</sap2010:WorkflowViewState.IdRef>
+            </FlowStep>
+          </FlowDecision.False>
+        </FlowDecision>
+      </Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+      <x:Reference>__ReferenceID3</x:Reference>
+      <x:Reference>__ReferenceID4</x:Reference>
+      <x:Reference>__ReferenceID5</x:Reference>
+    </Flowchart>
+    <sads:DebugSymbol.Symbol>d40BXFxtbzF1MS11aXAtZGFzMDNcUlBBLURldmVsb3BtZW50XEJyYXppbFxQUk9cX2VtYXp6b2NjXHJvMDNfTWF0ZXJpYWxJbnZvaWNlSW5zZXJ0aW9udG9QdXJjaGFzZU9yZGVyXENvZGVcVXRpbGl0aWVzXFN0YXJ0IFNjcmVlbiBSZWNvcmRlci54YW1sYAGTAgGXAgEGAXIBegEFAd8BAeQBAQQBoAEBugEBAwG6AgHAAgECXwPMAg4CAQFgBcoCEQIBAmU5ZVoDAYQBvgIPvgLLAQMBggFoD2iwAQIBfWpBalUCAXuzAhezAvgBAgF5bReuAiICAQO+Akm+Ap4BAwGDAWhGaFoDAYABaI8BaJ0BAgF+swJWswLLAQIBenYZejECAXd7Gd4BJAIBP98BGfQBJAIBM/UBGfwBIgIBKv0BGf0ByQECASf+ARn+AcQBAgEi/wEZrQIkAgEEdtUBdvoBAgF4fBuhASYCAWOiARu3ASYCAVW4ARvdASACAUDgARvrASACATjsARvzASQCATT6AUT6Ac8BAgEt9wFF9wFQAgEr/QGLAf0BxgECASj+AVD+AV0CASX+AYIB/gGQAQIBI4UCG4UCyQECASCGAhuGArUBAgEdhwIbmwIoAgETnAIbrAIgAgEFfR2IASICAXCJAR2gASICAWSjAR2uASICAVuvAR22ASYCAVa4ASm4ATYCAUG6AR/PASoCAUfSAR/bASgCAUPgASngATwCATniAR/pASgCATvxAUbxAc4BAgE37gFH7gFVAgE1hQKSAYUCnAECASGGAqMBhgKyAQIBHocCsAGHAr8BAgEbjQIhmAImAgEUnAIpnAI6AgEGngIfpwIwAgELqgIfqgL3AQIBCH0rfT8CAXF/IYYBKgIBc4kBK4kBQgIBZYsBIZIBKgIBa5UBIZ4BKgIBZ6MBK6MBVQIBXKUBIawBKgIBX7QBSLQBagIBWbEBSbEBVwIBV74BIb4BywECAVK/ASHGASoCAU3HASHOASoCAUjYASXYAVQCAUbUAUvUAVkCAUTnAUrnAVkCAT7kAUvkAVgCATyNAi+NAmACARWPAiWWAi4CAReeAtcBngL3AQIBEp4CggKeAocCAgERngJqngJ6AgEPpAIlpAKrAQIBDKoCjAGqAvQBAgEJhAFLhAFNAgF2gQFMgQFaAgF0kAFMkAFwAgFujQFNjQFeAgFsmwEnmwFWAgFqlwFNlwFeAgFoqgFLqgFNAgFipwFMpwFXAgFgvgFqvgF5AgFTxAFMxAGMAQIBUMEBTcEBWgIBTswBTMwBsQICAUvJAU3JAVsCAUmUAlGUAlUCARqRAlKRAmECARikApgBpAKoAQIBDQ==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="PathExists_2" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="1225,87" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="509,210">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="509,210">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="531,584">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="262,60" />
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="484,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="484,60" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="200,584">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetEnvironmentFolder_1" sap:VirtualizedContainerService.HintSize="334,61" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="334,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="334,60" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="376,353">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="262,60" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="200,584">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Parallel_1" sap:VirtualizedContainerService.HintSize="1225,630" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="262,60" />
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="200,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="262,60" />
+      <sap2010:ViewStateData Id="Parallel_2" sap:VirtualizedContainerService.HintSize="855,106" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="855,60" />
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="1225,91" />
+      <sap2010:ViewStateData Id="StartProcess_1" sap:VirtualizedContainerService.HintSize="1225,87" />
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="813,49">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetProcesses_1" sap:VirtualizedContainerService.HintSize="813,22" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="262,60" />
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="484,208" />
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="813,342">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="MinimizeWindow_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="434,130">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LogMessage_4" sap:VirtualizedContainerService.HintSize="334,91" />
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="813,278">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="1225,903">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="1247,2356">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">0,386</av:Point>
+            <av:Size x:Key="ShapeSize">200,78</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Throw_2" sap:VirtualizedContainerService.HintSize="200,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">370,429</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_2" sap:VirtualizedContainerService.HintSize="81,87">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">259,296.5</av:Point>
+            <av:Size x:Key="ShapeSize">81,87</av:Size>
+            <av:PointCollection x:Key="TrueConnector">259,340 100,340 100,386</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">341,340 470,340 470,429</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">10,194.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">110,245.5 110,275.5 300,275.5 300,296.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Throw_1" sap:VirtualizedContainerService.HintSize="200,22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">350,249</av:Point>
+            <av:Size x:Key="ShapeSize">200,22</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_1" sap:VirtualizedContainerService.HintSize="143,87">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">228.5,116.5</av:Point>
+            <av:Size x:Key="ShapeSize">143,87</av:Size>
+            <av:PointCollection x:Key="TrueConnector">228.5,160 110,160 110,194.5</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">371.5,160 450,160 450,249</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614,636">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,116.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="636,922">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Start_Record_Screen_1" sap:VirtualizedContainerService.HintSize="676,1002" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
