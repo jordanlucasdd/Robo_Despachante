@@ -16,10 +16,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1735,865</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1846,902</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="33">
+    <scg:List x:TypeArguments="x:String" Capacity="66">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -53,10 +53,15 @@
       <x:String>System.Activities.DynamicUpdate</x:String>
       <x:String>Elogroup.String</x:String>
       <x:String>UiPath.Word.Activities</x:String>
+      <x:String>UiPathTeam.Interactive.Activities.Properties</x:String>
+      <x:String>UiPathTeam.Interactive.Activities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="37">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="74">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -93,10 +98,13 @@
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
       <AssemblyReference>Elogroup.String.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPathTeam.Interactive.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="676,800" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="676,804" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="ListNome" />
       <Variable x:TypeArguments="x:String" Name="IDDocumento" />
@@ -111,6 +119,7 @@
       <Variable x:TypeArguments="x:String" Name="CNPJ" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="ListTipoAssinatura" />
       <Variable x:TypeArguments="x:Int32" Name="index" />
+      <Variable x:TypeArguments="x:String" Name="IdFinal" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -118,7 +127,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Flowchart sap:VirtualizedContainerService.HintSize="634,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart DisplayName="Flowchart" sap:VirtualizedContainerService.HintSize="634,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -135,39 +144,25 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,247</av:Point>
-            <av:Size x:Key="ShapeSize">200,66</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,313 300,357</av:PointCollection>
+            <av:Size x:Key="ShapeSize">200,68</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,315 300,357</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Preparar Documento" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_37">
+        <Sequence DisplayName="Preparar Documento" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_37">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Preparar_Documento workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Preparar_Documento.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Preparar_Documento workflow" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Preparar_Documento.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_CaminhoTemplate">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_CaminhoTemplateSocios" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Nome">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ListNome(0)" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_WorkingDir">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_WorkingDir" />
-              </InArgument>
-              <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">
-                <mva:VisualBasicValue x:TypeArguments="sd:DataRow" ExpressionText="io_TransactionItem" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_LocalPDF">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="LocalPDF" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_Empresa">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Empresa" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_CNPJ">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CNPJ" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_CaminhoTemplate">[in_CaminhoTemplateSocios]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Nome">[ListNome(0)]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_WorkingDir">[in_WorkingDir]</InArgument>
+              <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[io_TransactionItem]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_LocalPDF">[LocalPDF]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_Empresa">[Empresa]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_CNPJ">[CNPJ]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
@@ -176,17 +171,17 @@
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <av:Point x:Key="ShapeLocation">200,357</av:Point>
-                <av:Size x:Key="ShapeSize">200,66</av:Size>
-                <av:PointCollection x:Key="ConnectorLocation">300,423 300,477</av:PointCollection>
+                <av:Size x:Key="ShapeSize">200,68</av:Size>
+                <av:PointCollection x:Key="ConnectorLocation">300,425 300,477</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Submeter Documento" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_38">
+            <Sequence DisplayName="Submeter Documento" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_38">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Submeter_Documento workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Submeter_Documento.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Submeter_Documento workflow" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Submeter_Documento.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_LocalPDF">[LocalPDF]</InArgument>
                   <OutArgument x:TypeArguments="x:String" x:Key="out_IDDocumento">[IDDocumento]</OutArgument>
@@ -201,49 +196,39 @@
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <av:Point x:Key="ShapeLocation">200,477</av:Point>
-                    <av:Size x:Key="ShapeSize">200,66</av:Size>
+                    <av:Size x:Key="ShapeSize">200,68</av:Size>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="Enviar Para Assinatura" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                <Sequence DisplayName="Enviar Para Assinatura" sap:VirtualizedContainerService.HintSize="376,305" sap2010:WorkflowViewState.IdRef="Sequence_41">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Enviar_Para_Assinatura workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\Enviar_Para_Assinatura.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Enviar_Para_Assinatura workflow" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\Enviar_Para_Assinatura.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_EmailRobo">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="EmailRobo" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_Nome">
-                        <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="ListNome" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_Email">
-                        <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="ListEmail" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_CPF">
-                        <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="ListCPF" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_Filename">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FilenameSubmeter" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_IDDocumento">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IDDocumento" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_url">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;url&quot;).ToString" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_token">
-                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;token&quot;).ToString" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_QtdAssinantes">
-                        <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_QuantidadeAssinaturas" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_TipoAssinatura">
-                        <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="ListTipoAssinatura" />
-                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_EmailRobo">[EmailRobo]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_Nome">[ListNome]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_Email">[ListEmail]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_CPF">[ListCPF]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Filename">[FilenameSubmeter]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_IDDocumento">[IDDocumento]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_url">[in_Config("url").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_token">[in_Config("token").ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="in_QtdAssinantes">[in_QuantidadeAssinaturas]</InArgument>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_TipoAssinatura">[ListTipoAssinatura]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_Ambiente">[in_Config("Environment").ToString]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_IdFinal">[IdFinal]</OutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
+                  <Assign DisplayName="Assign &quot;ID Documento&quot;" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[io_TransactionItem("ID Documento")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[IdFinal]</InArgument>
+                    </Assign.Value>
+                  </Assign>
                 </Sequence>
               </FlowStep>
             </FlowStep.Next>
@@ -256,11 +241,11 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,127</av:Point>
-            <av:Size x:Key="ShapeSize">200,66</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,193 300,247</av:PointCollection>
+            <av:Size x:Key="ShapeSize">200,68</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,195 300,247</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Definindo Variáveis" sap:VirtualizedContainerService.HintSize="611,1212" sap2010:WorkflowViewState.IdRef="Sequence_42">
+        <Sequence DisplayName="Definindo Variáveis" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_42">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

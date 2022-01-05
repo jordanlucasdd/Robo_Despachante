@@ -14059,15 +14059,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Elogroup\\.nuget\\packages\\": {}
+    "C:\\Users\\JordanLucasDias\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "Robo Despachante",
       "projectName": "Robo Despachante",
-      "projectPath": "C:\\Users\\Elogroup\\OneDrive - Elogroup\\Área de Trabalho\\Nova pasta\\Robo_Despachante\\1. Code & Docs\\Code\\.local",
-      "packagesPath": "C:\\Users\\Elogroup\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Elogroup\\OneDrive - Elogroup\\Área de Trabalho\\Nova pasta\\Robo_Despachante\\1. Code & Docs\\Code\\.local"
+      "projectPath": "C:\\Users\\JordanLucasDias\\OneDrive - Elogroup\\Área de Trabalho\\Nova pasta\\Robo_Despachante\\1. Code & Docs\\Code\\.local",
+      "packagesPath": "C:\\Users\\JordanLucasDias\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JordanLucasDias\\OneDrive - Elogroup\\Área de Trabalho\\Nova pasta\\Robo_Despachante\\1. Code & Docs\\Code\\.local"
     },
     "frameworks": {
       "net461": {
@@ -14143,7 +14143,7 @@
             "version": "[1.4.9, 1.4.9]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\Elogroup\\AppData\\Local\\Programs\\UiPath\\Studio\\runtime.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\UiPath\\Studio\\runtime.json"
       }
     },
     "runtimes": {
