@@ -14,6 +14,22 @@
           "lib/net45/ICSharpCode.AvalonEdit.dll": {}
         }
       },
+      "BalaReva.Excel.Activities/2021.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
+          "MicrosoftOfficeCore": "15.0.0"
+        },
+        "compile": {
+          "lib/_._": {}
+        },
+        "runtime": {
+          "lib/BalaReva.Excel.Base.dll": {},
+          "lib/BalaReva.Excel.Design.dll": {},
+          "lib/BalaReva.Excel.Utilities.dll": {},
+          "lib/BalaReva.Excel.dll": {}
+        }
+      },
       "BouncyCastle/1.8.1": {
         "type": "package",
         "compile": {
@@ -686,6 +702,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+        "type": "package",
+        "compile": {
+          "lib/net20/_._": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
+        }
+      },
       "Microsoft.Office.Interop.Word/15.0.4797.1003": {
         "type": "package",
         "compile": {
@@ -759,6 +784,15 @@
         },
         "build": {
           "build/_._": {}
+        }
+      },
+      "MicrosoftOfficeCore/15.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net35/_._": {}
+        },
+        "runtime": {
+          "lib/net35/Office.dll": {}
         }
       },
       "MvvmLight/5.4.1.1": {
@@ -3519,6 +3553,22 @@
           "lib/net45/ICSharpCode.AvalonEdit.dll": {}
         }
       },
+      "BalaReva.Excel.Activities/2021.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
+          "MicrosoftOfficeCore": "15.0.0"
+        },
+        "compile": {
+          "lib/_._": {}
+        },
+        "runtime": {
+          "lib/BalaReva.Excel.Base.dll": {},
+          "lib/BalaReva.Excel.Design.dll": {},
+          "lib/BalaReva.Excel.Utilities.dll": {},
+          "lib/BalaReva.Excel.dll": {}
+        }
+      },
       "BouncyCastle/1.8.1": {
         "type": "package",
         "compile": {
@@ -4191,6 +4241,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+        "type": "package",
+        "compile": {
+          "lib/net20/_._": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
+        }
+      },
       "Microsoft.Office.Interop.Word/15.0.4797.1003": {
         "type": "package",
         "compile": {
@@ -4264,6 +4323,15 @@
         },
         "build": {
           "build/_._": {}
+        }
+      },
+      "MicrosoftOfficeCore/15.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net35/_._": {}
+        },
+        "runtime": {
+          "lib/net35/Office.dll": {}
         }
       },
       "MvvmLight/5.4.1.1": {
@@ -6922,6 +6990,20 @@
         "lib/netcoreapp3.0/ICSharpCode.AvalonEdit.xml"
       ]
     },
+    "BalaReva.Excel.Activities/2021.0.0": {
+      "sha512": "wNt9V2K11KZ6L7HPF+IP7sU+qidduP4VVZycJA188jR5klcTDHzWUKCE94Hs5x7Uhj+iaw89W6chXxl6Qqg22g==",
+      "type": "package",
+      "path": "balareva.excel.activities/2021.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "balareva.excel.activities.2021.0.0.nupkg.sha512",
+        "balareva.excel.activities.nuspec",
+        "lib/BalaReva.Excel.Base.dll",
+        "lib/BalaReva.Excel.Design.dll",
+        "lib/BalaReva.Excel.Utilities.dll",
+        "lib/BalaReva.Excel.dll"
+      ]
+    },
     "BouncyCastle/1.8.1": {
       "sha512": "nH+P67LavO5EcxjKdBxFfRdfdFhivS3Xp3+0br1KcpCI8DM6ksCWy6YYZjk7XFV+VsHGtkUovwIZ/vmCp42geA==",
       "type": "package",
@@ -7852,6 +7934,18 @@
         "runtime.json"
       ]
     },
+    "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+      "sha512": "DfceS96ustwfL8EOJNNRtpk6b0RylhjNpgeeemuvi9X4GYks2UTeAimjSrdFEfuqRo5ibZ4Sd0gJIeDr9gMa6Q==",
+      "type": "package",
+      "path": "microsoft.office.interop.excel/15.0.4795.1000",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Microsoft.Office.Interop.Excel.dll",
+        "microsoft.office.interop.excel.15.0.4795.1000.nupkg.sha512",
+        "microsoft.office.interop.excel.nuspec"
+      ]
+    },
     "Microsoft.Office.Interop.Word/15.0.4797.1003": {
       "sha512": "p22pljmHaQjDxNLqO+uO5vi3y0TK5t1mAtSAg93K28/e12Hw3qzfflAo6XHvNXxnvz9HZGv59vLCwIaC9xbXNQ==",
       "type": "package",
@@ -8161,6 +8255,18 @@
         "ref/netstandard2.0/en/Windows.UI.Xaml.Core.Direct.XamlDirectContract.xml",
         "ref/netstandard2.0/en/Windows.UI.Xaml.Hosting.HostingContract.xml",
         "ref/netstandard2.0/en/Windows.Web.Http.Diagnostics.HttpDiagnosticsContract.xml"
+      ]
+    },
+    "MicrosoftOfficeCore/15.0.0": {
+      "sha512": "/KgYw8uvv0Ut8FPvyEa1XJ/TrLSRgvTv3JgC2IT0/8NwoICzbEJWfmfwsE6Dwi8WH0jVkTEO7zRvGvaKqUOhqQ==",
+      "type": "package",
+      "path": "microsoftofficecore/15.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/Office.dll",
+        "microsoftofficecore.15.0.0.nupkg.sha512",
+        "microsoftofficecore.nuspec"
       ]
     },
     "MvvmLight/5.4.1.1": {
@@ -14042,6 +14148,7 @@
   "projectFileDependencyGroups": {
     "": [],
     ".NETFramework,Version=v4.6.1": [
+      "BalaReva.Excel.Activities >= 2021.0.0 <= 2021.0.0",
       "EloGroup.ConvertWordToPDF.Activity >= 1.0.0 <= 1.0.0",
       "Elogroup.String.Activities >= 1.0.50 <= 1.0.50",
       "Microsoft.Activities >= 1.0.1 <= 1.0.1",
@@ -14072,6 +14179,11 @@
     "frameworks": {
       "net461": {
         "dependencies": {
+          "BalaReva.Excel.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[2021.0.0, 2021.0.0]"
+          },
           "EloGroup.ConvertWordToPDF.Activity": {
             "include": "Runtime",
             "target": "Package",

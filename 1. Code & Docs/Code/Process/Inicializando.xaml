@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Inicializando" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:Select_Multiple_Files;assembly=Select Multiple Files" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Inicializando" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_DtblDados" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_CaminhoTemplateSocios" Type="OutArgument(x:String)" />
@@ -10,7 +10,7 @@
   <this:Inicializando.in_NomeSheet>
     <InArgument x:TypeArguments="x:String" />
   </this:Inicializando.in_NomeSheet>
-  <sap:VirtualizedContainerService.HintSize>1846,1660</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1794,1487</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="29">
@@ -91,7 +91,7 @@
       <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Inicializando" sap:VirtualizedContainerService.HintSize="376,949" sap2010:WorkflowViewState.IdRef="Sequence_19">
+  <Sequence DisplayName="Inicializando" sap:VirtualizedContainerService.HintSize="526,1422" sap2010:WorkflowViewState.IdRef="Sequence_19">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="caminhoExcel" />
       <Variable x:TypeArguments="x:String" Name="CaminhoTemplateEmpregados" />
@@ -104,44 +104,10 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Atividades Ignoradas" sap:VirtualizedContainerService.HintSize="426,574" sap2010:WorkflowViewState.IdRef="Sequence_28">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:MessageBox ChosenButton="{x:Null}" AutoCloseAfter="00:00:05" Buttons="Ok" Caption="EloGroup" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="384,85" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Selecione o modelo de template&quot;]" TopMost="True">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:MessageBox>
-          <s:SelectMultipleFiles DisplayName="Select multiple files" Filter="Word|*.docx;*.doc;*.docm;*.dotx;*.dot" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="SelectMultipleFiles_1" SelectedFiles="[out_CaminhoTemplate]" />
-          <ui:MessageBox ChosenButton="{x:Null}" AutoCloseAfter="00:00:05" Buttons="Ok" Caption="EloGroup" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="384,85" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;Selecione a planilha base&quot;]" TopMost="True" />
-          <ui:SelectFile sap2010:Annotation.AnnotationText="Solicitando planilha com dados que serão utilizados " DisplayName="Select File" Filter="Excel|*.xlsx;*.xls;*.xlsm;*.xlsb" sap:VirtualizedContainerService.HintSize="384,170" sap2010:WorkflowViewState.IdRef="SelectFile_4" SelectedFile="[caminhoExcel]">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:SelectFile>
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <ufa:FormActivity Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormFieldsOutputData="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormActivityFileName="template2" CreateFormActivityFilePath="forms" CreateFormId="118cd8a6-c7ec-43c5-80c9-62f035b287a6" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Criando Tela de Interação" FormHeight="627" FormSchema="%[{&quot;tag&quot;:&quot;h1&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;h4&gt;&lt;b&gt;Selecione o(s) template(s) do documento e a planilha com os dados que será usado pelo robô.&lt;/b&gt;&lt;/h4&gt;&lt;br&gt;&quot;,&quot;key&quot;:&quot;titulo&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;refreshOnChange&quot;:true,&quot;key&quot;:&quot;label&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Template de empregados (CLT/Estagiários) | Template único&quot;,&quot;customClass&quot;:&quot;filePath&quot;,&quot;showAllFileTypes&quot;:false,&quot;key&quot;:&quot;TemplateEmpregados&quot;,&quot;filePathExtension&quot;:[{&quot;displayName&quot;:&quot;Word Documents&quot;,&quot;value&quot;:&quot;*.doc;*docx&quot;}],&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;},{&quot;label&quot;:&quot;Template de sócios&quot;,&quot;customClass&quot;:&quot;filePath&quot;,&quot;showAllFileTypes&quot;:false,&quot;key&quot;:&quot;TemplateSocios&quot;,&quot;filePathExtension&quot;:[{&quot;displayName&quot;:&quot;Word Documents&quot;,&quot;value&quot;:&quot;*.doc;*docx&quot;}],&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;},{&quot;label&quot;:&quot;Planilha de dados&quot;,&quot;customClass&quot;:&quot;filePath&quot;,&quot;showAllFileTypes&quot;:false,&quot;key&quot;:&quot;PlanilhaDados&quot;,&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;,&quot;filePathExtension&quot;:[{&quot;displayName&quot;:&quot;Excel Worksheets&quot;,&quot;value&quot;:&quot;*.xls*&quot;}]},{&quot;label&quot;:&quot;Quantidade de assinaturas no documento&quot;,&quot;tableView&quot;:false,&quot;delimiter&quot;:false,&quot;requireDecimal&quot;:false,&quot;validate&quot;:{&quot;required&quot;:true,&quot;customMessage&quot;:&quot;É necessário escolher a quantidade de assinaturas do documento&quot;,&quot;min&quot;:1},&quot;errorLabel&quot;:&quot;É necessário escolher a quantidade de assinaturas do documento&quot;,&quot;key&quot;:&quot;QuantidadeAssinaturas&quot;,&quot;type&quot;:&quot;number&quot;,&quot;decimalLimit&quot;:0,&quot;input&quot;:true},{&quot;label&quot;:&quot;OK&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;ok&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;isResetData&quot;:false},{&quot;label&quot;:&quot;EloGroup&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;&lt;center&gt;\n&lt;img src='https://elogroup.com.br/wp-content/uploads/2021/08/Logo-2.svg' width='180' aling='middle'&gt;\n&lt;/center&gt;&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;html&quot;,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;refreshOnChange&quot;:true,&quot;key&quot;:&quot;label&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Seleção de Informações" FormWidth="542" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="334,194" sap2010:WorkflowViewState.IdRef="FormActivity_2" IsReadOnly="False" MaxColumnsForSchemaGeneration="0" RunDoBlockFirst="False" RunInIsolatedMode="True" StartAsMinimized="False">
+    <ufa:FormActivity Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormFieldsOutputData="{x:Null}" IconPath="{x:Null}" LocalCSSFilePath="{x:Null}" SelectedButton="{x:Null}" TimeoutInSeconds="{x:Null}" WindowPositionLeft="{x:Null}" WindowPositionTop="{x:Null}" CreateFormActivityFileName="template2" CreateFormActivityFilePath="forms" CreateFormId="118cd8a6-c7ec-43c5-80c9-62f035b287a6" DisableMaximizeButton="False" DisableMinimizeButton="False" DisableSanitize="False" DisplayName="Criando Tela de Interação" FormHeight="627" FormSchema="%[{&quot;tag&quot;:&quot;h1&quot;,&quot;refreshOnChange&quot;:true,&quot;content&quot;:&quot;&lt;h4&gt;&lt;b&gt;Selecione o(s) template(s) do documento e a planilha com os dados que será usado pelo robô.&lt;/b&gt;&lt;/h4&gt;&lt;br&gt;&quot;,&quot;key&quot;:&quot;titulo&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;refreshOnChange&quot;:true,&quot;key&quot;:&quot;label&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;},{&quot;label&quot;:&quot;Template de empregados (CLT/Estagiários) | Template único&quot;,&quot;customClass&quot;:&quot;filePath&quot;,&quot;showAllFileTypes&quot;:false,&quot;key&quot;:&quot;TemplateEmpregados&quot;,&quot;filePathExtension&quot;:[{&quot;displayName&quot;:&quot;Word Documents&quot;,&quot;value&quot;:&quot;*.doc;*docx&quot;}],&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;},{&quot;label&quot;:&quot;Template de sócios&quot;,&quot;customClass&quot;:&quot;filePath&quot;,&quot;showAllFileTypes&quot;:false,&quot;key&quot;:&quot;TemplateSocios&quot;,&quot;filePathExtension&quot;:[{&quot;displayName&quot;:&quot;Word Documents&quot;,&quot;value&quot;:&quot;*.doc;*docx&quot;}],&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;},{&quot;label&quot;:&quot;Planilha de dados&quot;,&quot;customClass&quot;:&quot;filePath&quot;,&quot;showAllFileTypes&quot;:false,&quot;key&quot;:&quot;PlanilhaDados&quot;,&quot;input&quot;:true,&quot;suffix&quot;:&quot;Select &quot;,&quot;tableView&quot;:true,&quot;type&quot;:&quot;filePath&quot;,&quot;filePathExtension&quot;:[{&quot;displayName&quot;:&quot;Excel Worksheets&quot;,&quot;value&quot;:&quot;*.xls*&quot;}]},{&quot;label&quot;:&quot;Quantidade de assinaturas no documento&quot;,&quot;tableView&quot;:false,&quot;delimiter&quot;:false,&quot;requireDecimal&quot;:false,&quot;validate&quot;:{&quot;required&quot;:true,&quot;customMessage&quot;:&quot;É necessário escolher a quantidade de assinaturas do documento&quot;,&quot;min&quot;:1},&quot;errorLabel&quot;:&quot;É necessário escolher a quantidade de assinaturas do documento&quot;,&quot;key&quot;:&quot;QuantidadeAssinaturas&quot;,&quot;type&quot;:&quot;number&quot;,&quot;decimalLimit&quot;:0,&quot;input&quot;:true},{&quot;label&quot;:&quot;OK&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;ok&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;isResetData&quot;:false},{&quot;label&quot;:&quot;EloGroup&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;&lt;center&gt;\n&lt;img src='https://elogroup.com.br/wp-content/uploads/2021/08/Logo-2.svg' width='180' aling='middle'&gt;\n&lt;/center&gt;&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;html&quot;,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false},{&quot;refreshOnChange&quot;:true,&quot;key&quot;:&quot;label&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Label&quot;,&quot;type&quot;:&quot;label&quot;}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORMS&quot;],&quot;Id&quot;:&quot;100120&quot;,&quot;Name&quot;:&quot;Default&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/uipath.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/uipath.png&quot;,&quot;OverrideCssUrl&quot;:&quot;../../assets/css/themes/uipath.custom.css&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormTitle="Seleção de Informações" FormWidth="542" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="484,192" sap2010:WorkflowViewState.IdRef="FormActivity_2" IsReadOnly="False" MaxColumnsForSchemaGeneration="0" RunDoBlockFirst="False" RunInIsolatedMode="True" StartAsMinimized="False">
       <ufa:FormActivity.Body>
         <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:Object)">
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_29">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_29">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -164,7 +130,7 @@
         <OutArgument x:TypeArguments="x:Int32" x:Key="QuantidadeAssinaturas">[out_QuantidadeAssinaturas]</OutArgument>
       </ufa:FormActivity.FormFieldsCollection>
     </ufa:FormActivity>
-    <If Condition="[(String.IsNullOrEmpty(CaminhoTemplateEmpregados) And String.IsNullOrEmpty(CaminhoTemplateSocios)) or String.IsNullOrEmpty(caminhoExcel)]" DisplayName="If Validando Arquivos Lidos" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[(String.IsNullOrEmpty(CaminhoTemplateEmpregados) And String.IsNullOrEmpty(CaminhoTemplateSocios)) or String.IsNullOrEmpty(caminhoExcel)]" DisplayName="If Validando Arquivos Lidos" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -191,16 +157,16 @@
         </Sequence>
       </If.Else>
     </If>
-    <Sequence DisplayName="Gerando Cópia de segurança" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Sequence_30">
+    <Sequence DisplayName="Gerando Cópia de segurança" sap:VirtualizedContainerService.HintSize="484,66" sap2010:WorkflowViewState.IdRef="Sequence_30">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <If Condition="[not String.IsNullOrEmpty(CaminhoTemplateEmpregados)]" DisplayName="If not String.IsNullOrEmpty(CaminhoTemplateEmpregados)" sap:VirtualizedContainerService.HintSize="512,542" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[not String.IsNullOrEmpty(CaminhoTemplateEmpregados)]" DisplayName="If not String.IsNullOrEmpty(CaminhoTemplateEmpregados)" sap:VirtualizedContainerService.HintSize="512,536" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="476,352" sap2010:WorkflowViewState.IdRef="Sequence_31">
+          <Sequence sap:VirtualizedContainerService.HintSize="476,349" sap2010:WorkflowViewState.IdRef="Sequence_31">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -214,7 +180,7 @@
                 <InArgument x:TypeArguments="x:String">[in_WorkingDir+"\TemplateEmpregados.docx"]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[out_CaminhoTemplateEmpregados]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="434,160" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[CaminhoTemplateEmpregados]" />
+            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[out_CaminhoTemplateEmpregados]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[CaminhoTemplateEmpregados]" />
           </Sequence>
         </If.Then>
         <If.Else>
@@ -227,7 +193,7 @@
           </Sequence>
         </If.Else>
       </If>
-      <If Condition="[not String.IsNullOrEmpty(CaminhoTemplateSocios)]" DisplayName="If not String.IsNullOrEmpty(CaminhoTemplateSocios) " sap:VirtualizedContainerService.HintSize="512,542" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[not String.IsNullOrEmpty(CaminhoTemplateSocios)]" DisplayName="If not String.IsNullOrEmpty(CaminhoTemplateSocios) " sap:VirtualizedContainerService.HintSize="512,539" sap2010:WorkflowViewState.IdRef="If_2">
         <If.Then>
           <Sequence sap:VirtualizedContainerService.HintSize="476,352" sap2010:WorkflowViewState.IdRef="Sequence_33">
             <sap:WorkflowViewStateService.ViewState>
@@ -258,20 +224,20 @@
       </If>
       <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_WorkingDir+&quot;\PlanilhaDeDados.xlsx&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="512,160" sap2010:WorkflowViewState.IdRef="CopyFile_3" Overwrite="True" Path="[caminhoExcel]" />
     </Sequence>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Realizando Leitura da planilha e gerando uma tabela interna que será utilizada como fila do processo, cada linha representa uma transação" DataTable="[out_DtblDados]" DisplayName="Lendo Planilha" sap:VirtualizedContainerService.HintSize="334,147" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[in_NomeSheet]" WorkbookPath="[caminhoExcel]">
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" sap2010:Annotation.AnnotationText="Realizando Leitura da planilha e gerando uma tabela interna que será utilizada como fila do processo, cada linha representa uma transação" DataTable="[out_DtblDados]" DisplayName="Lendo Planilha" sap:VirtualizedContainerService.HintSize="484,144" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[in_NomeSheet]" WorkbookPath="[caminhoExcel]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadRange>
-    <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Tratando Dados das Colunas" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[out_DtblDados.Columns]">
+    <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Tratando Dados das Colunas" sap:VirtualizedContainerService.HintSize="484,376" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[out_DtblDados.Columns]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="sd:DataColumn">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataColumn" Name="Column" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="304,344" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_26">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -298,15 +264,15 @@
       </ui:ForEach.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <If Condition="[Not(NomeColunas.Contains(&quot;ASSINANTE&quot;) AndAlso NomeColunas.Contains(&quot;MAIL&quot;)AndAlso NomeColunas.Contains(&quot;CPF&quot;) AndAlso NomeColunas.Contains(&quot;ASSINATURA&quot;))]" DisplayName="If VALIDANDO COLUNAS" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_4">
+    <If Condition="[Not(NomeColunas.Contains(&quot;ASSINANTE&quot;) AndAlso NomeColunas.Contains(&quot;MAIL&quot;)AndAlso NomeColunas.Contains(&quot;CPF&quot;) AndAlso NomeColunas.Contains(&quot;ASSINATURA&quot;))]" DisplayName="If VALIDANDO COLUNAS" sap:VirtualizedContainerService.HintSize="484,301" sap2010:WorkflowViewState.IdRef="If_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
